@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AppRover;
+package vista;
 
 import java.util.Random;
 import javafx.application.Platform;
@@ -31,10 +31,11 @@ import javafx.scene.text.FontWeight;
  */
 public class VistaPrincipal {
     private BorderPane root;
-
-    VistaPrincipal(){
+    
+    public VistaPrincipal(){
         root = new BorderPane();
         root.setCenter(new Button());
+        
     }
     public Pane getRoot(){
         return root;
