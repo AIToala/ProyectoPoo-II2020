@@ -30,7 +30,7 @@ public class App extends Application{
         //creamos un objeto de tipo VistaPrincipal
         vp = new VistaPrincipal();
         //creamos la escena y a la escena le agregamos el contenedor raiz
-        Scene theScene = new Scene(vp.getRoot());
+        Scene theScene = new Scene(vp.getRoot(), 600, 600);
         //fijamos la escena al stage
         primaryStage.setScene(theScene);
         primaryStage.setTitle("Exploracion Rover");
