@@ -5,6 +5,7 @@
  */
 package data;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -12,9 +13,9 @@ import java.util.ArrayList;
  * @author ai_to
  */
 public class Reporte {
-    DateTime fechaInicio;
-    DateTime fechaFin;
-    ArrayList<DateTime> fechaExploracion;
+    LocalDateTime fechaInicio;
+    LocalDateTime fechaFin;
+    ArrayList<LocalDateTime> fechaExploracion;
     ArrayList<String> minerales;
     ArrayList<String> nombreCrater;
 }
