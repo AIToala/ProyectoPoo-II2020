@@ -5,10 +5,23 @@
  */
 package data;
 
+import javafx.scene.effect.Light.Point;
+import javafx.scene.image.ImageView;
+
 /**
  *
  * @author ai_to
  */
 public class Rover {
-    
+ImageView rover;
+Point ubicacion;
+double orientacion;
+double roverAncho;
+double roverAlto;
+
+public boolean avanzar(double distancia){return true;}
+public boolean girar(double grados){return true;}
+public boolean dirigirse(double x, double y){return true;}
+public String sensar(){return "Hola";}
+
 }

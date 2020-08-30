@@ -5,10 +5,16 @@
  */
 package data;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ai_to
  */
-public class Registro {
-    
+public class Reporte {
+    DateTime fechaInicio;
+    DateTime fechaFin;
+    ArrayList<DateTime> fechaExploracion;
+    ArrayList<String> minerales;
+    ArrayList<String> nombreCrater;
 }

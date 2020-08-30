@@ -5,6 +5,10 @@
  */
 package approver;
 
+import data.Crater;
+import data.Reporte;
+import data.Rover;
+import java.util.ArrayList;
 import vista.VistaPrincipal;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -15,6 +19,12 @@ import javafx.stage.Stage;
  */
 public class App extends Application{
     VistaPrincipal vp;
+    Rover roverPrincipal;
+    ArrayList<Crater> crateres;
+    ArrayList<Reporte> reportes;
+    
+    
+    
     @Override
     public void start(Stage primaryStage) {
         //creamos un objeto de tipo VistaPrincipal

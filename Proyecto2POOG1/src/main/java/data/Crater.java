@@ -5,10 +5,20 @@
  */
 package data;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ai_to
  */
 public class Crater {
-    
+String id;
+String nombre;
+double radio;
+double latitud;
+double longitud;
+boolean sensado;
+ArrayList<String> minerales;
+
+
 }
