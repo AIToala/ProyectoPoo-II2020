@@ -54,8 +54,8 @@ public class VistaPrincipal {
         
         btnExplorar.setOnAction(
             (event)->{
-                /*
                 App.stageP.hide();
+                Scene scene = new Scene(new VistaExplorar().getRoot());
                 Stage appStage = new Stage();
                 appStage.setScene(scene);
                 appStage.toFront();
@@ -65,7 +65,6 @@ public class VistaPrincipal {
                         App.stageP.show();
                     }
                 );
-                */
             }
         );
         btnPlanificar.setOnAction(
