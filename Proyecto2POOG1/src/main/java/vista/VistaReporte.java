@@ -6,9 +6,13 @@
 package vista;
 
 import approver.App;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -16,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -28,32 +33,91 @@ import javafx.stage.WindowEvent;
  * @author Usuario
  */
 public class VistaReporte {
-    private GridPane root;
-    
-    public VistaReporte(){
-        root = new GridPane();
+
+    private VBox root;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
+    private String mineral;
+
+    public VistaReporte() {
+        root = new VBox();
         seccionBusqueda();
     }
-    
-    public void seccionBusqueda(){
-        VBox vb = new VBox();
+
+    public void seccionBusqueda() {
+        HBox hb1 = new HBox();
         Label l1 = new Label("Fecha Inicio");
-        Label l2 = new Label("Fecha Fin");
-        Label l3 = new Label("Mineral");
-        vb.getChildren().addAll(l1, l2, l3);
-        
-        VBox vb2 = new VBox();
         TextField tx1 = new TextField();
+        l1.setPadding(new Insets(0, 20, 0, 0));
+        hb1.setSpacing(5);
+        hb1.getChildren().addAll(l1, tx1);
+
+        HBox hb2 = new HBox();
+        Label l2 = new Label("Fecha Fin");
         TextField tx2 = new TextField();
+        l2.setPadding(new Insets(0, 20, 0, 0));
+        hb2.setSpacing(5);
+        hb2.getChildren().addAll(l2, tx2);
+
+        HBox hb3 = new HBox();
+        Label l3 = new Label("Mineral");
         TextField tx3 = new TextField();
-        vb2.getChildren().addAll(tx1, tx2, tx3);
+        l3.setPadding(new Insets(0, 20, 0, 0));
+        hb3.setSpacing(5);
+        hb3.getChildren().addAll(l3, tx3);
+
+        root.setSpacing(10);
+        root.setPadding(new Insets(50));
+        root.getChildren().addAll(hb1, hb2, hb3);
+
+        tx1.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                try {
+                    String str = String.valueOf(tx1.getText());
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    fechaInicio = LocalDate.parse(str, formatter);
+                    System.out.println("MMMMHOLA");
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        });
+
+        tx2.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                try {
+                    String str = String.valueOf(tx2.getText());
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    fechaFin = LocalDate.parse(str, formatter);
+                    System.out.println("MMMMHOLA2");
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        });
         
-        GridPane.setConstraints(vb, 0, 0);
-        GridPane.setConstraints(vb2, 1, 0);
-        root.getChildren().addAll(vb, vb2);
+        tx3.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                mineral = String.valueOf(tx3.getText());
+            }
+        });
     }
     
-    public Pane getRoot(){
+    
+    
+    
+    
+    
+    
+    
+
+    public void seccionTabla() {
+        VBox v1 = new VBox();
+        v1.setAlignment(Pos.CENTER);
+        v1.setSpacing(15);
+    }
+
+    public Pane getRoot() {
         return root;
     }
 }

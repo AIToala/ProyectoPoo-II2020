@@ -5,6 +5,7 @@
  */
 package data;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -19,6 +20,7 @@ double latitud;
 double longitud;
 boolean sensado;
 ArrayList<String> minerales;
+LocalDateTime fechaExploracion;
 
 
 }
