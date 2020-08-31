@@ -48,22 +48,22 @@ public class VistaReporte {
         HBox hb1 = new HBox();
         Label l1 = new Label("Fecha Inicio");
         TextField tx1 = new TextField();
-        l1.setPadding(new Insets(0, 20, 0, 0));
-        hb1.setSpacing(5);
+        
+        hb1.setSpacing(20);
         hb1.getChildren().addAll(l1, tx1);
-
+        
         HBox hb2 = new HBox();
-        Label l2 = new Label("Fecha Fin");
+        Label l2 = new Label("Fecha Fin    ");
         TextField tx2 = new TextField();
-        l2.setPadding(new Insets(0, 20, 0, 0));
-        hb2.setSpacing(5);
+        
+        hb2.setSpacing(20);
         hb2.getChildren().addAll(l2, tx2);
 
         HBox hb3 = new HBox();
-        Label l3 = new Label("Mineral");
+        Label l3 = new Label("Mineral       ");
         TextField tx3 = new TextField();
-        l3.setPadding(new Insets(0, 20, 0, 0));
-        hb3.setSpacing(5);
+        
+        hb3.setSpacing(20);
         hb3.getChildren().addAll(l3, tx3);
 
         root.setSpacing(10);
