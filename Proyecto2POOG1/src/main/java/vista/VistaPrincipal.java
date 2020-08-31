@@ -71,7 +71,7 @@ public class VistaPrincipal {
         btnPlanificar.setOnAction(
             (event)->{
                 App.stageP.hide();
-                Scene scene = new Scene(new VistaPlanificar().getRoot());
+                Scene scene = new Scene(new VistaPlanificar().getRoot(), 1200, 600);
                 Stage appStage = new Stage();
                 appStage.setScene(scene);
                 appStage.toFront();
@@ -86,7 +86,7 @@ public class VistaPrincipal {
         btnReportes.setOnAction(
             (event)->{
                 App.stageP.hide();
-                Scene scene = new Scene(new VistaReporte().getRoot());
+                Scene scene = new Scene(new VistaReporte().getRoot(), 1200, 600);
                 Stage appStage = new Stage();
                 appStage.setScene(scene);
                 appStage.toFront();
