@@ -5,9 +5,12 @@
  */
 package vista;
 
+import approver.App;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -15,17 +18,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  *
  * @author Usuario
  */
 public class VistaReporte {
-    private GridPane gp;
+    private GridPane root;
     
     public VistaReporte(){
-        gp = new GridPane();
+        root = new GridPane();
         seccionBusqueda();
     }
     
@@ -44,8 +50,10 @@ public class VistaReporte {
         
         GridPane.setConstraints(vb, 0, 0);
         GridPane.setConstraints(vb2, 1, 0);
-        gp.getChildren().addAll(vb, vb2);
+        root.getChildren().addAll(vb, vb2);
     }
     
-    
+    public Pane getRoot(){
+        return root;
+    }
 }

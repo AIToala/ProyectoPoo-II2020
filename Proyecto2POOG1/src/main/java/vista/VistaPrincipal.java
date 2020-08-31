@@ -5,9 +5,11 @@
  */
 package vista;
 
+import approver.App;
 import java.util.Random;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
@@ -28,13 +30,14 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 /**
  *
  * @author ai_to
  */
 public class VistaPrincipal {
     private BorderPane root;
-    
+    private boolean salida = false;
     public VistaPrincipal(){
         root = new BorderPane();
         
@@ -52,18 +55,56 @@ public class VistaPrincipal {
         btnExplorar.setOnAction(
             (event)->{
                 /*
-                Scene sceneExp = new Scene(new VistaExplorar());
-                Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                appStage.setScene(sceneExp);
+                App.stageP.hide();
+                Stage appStage = new Stage();
+                appStage.setScene(scene);
                 appStage.toFront();
                 appStage.show();
+                appStage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, 
+                    (e)->{
+                        App.stageP.show();
+                    }
+                );
                 */
+            }
+        );
+        btnPlanificar.setOnAction(
+            (event)->{
+                App.stageP.hide();
+                Scene scene = new Scene(new VistaPlanificar().getRoot());
+                Stage appStage = new Stage();
+                appStage.setScene(scene);
+                appStage.toFront();
+                appStage.show();
+                appStage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, 
+                    (e)->{
+                        App.stageP.show();
+                    }
+                );
+            }
+        );
+        btnReportes.setOnAction(
+            (event)->{
+                App.stageP.hide();
+                Scene scene = new Scene(new VistaReporte().getRoot());
+                Stage appStage = new Stage();
+                appStage.setScene(scene);
+                appStage.toFront();
+                appStage.show();
+                appStage.addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, 
+                    (e)->{
+                        App.stageP.show();
+                    }
+                );
+            }
+        );
+        btnSalir.setOnAction(
+            (event)->{
+                App.stageP.close();
             }
         );
     }
     public Pane getRoot(){
         return root;
     }
-
-    
 }
