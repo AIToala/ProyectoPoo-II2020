@@ -136,7 +136,7 @@ public class Rover {
             double newX = ubicacion.getX() + constantes.constantes.dx*Math.cos(direccion);
             double newY = ubicacion.getY() + constantes.constantes.dx*Math.sin(direccion);
             boolean escapa = 0 > x || x > constantes.constantes.mapAncho || 0 > y || y > constantes.constantes.mapAlto;
-            System.out.println(escapa);
+            
             while (distanciaFaltante > constantes.constantes.dx && (!escapa)){
                 ubicacion.setX(newX);
                 ubicacion.setY(newY);
