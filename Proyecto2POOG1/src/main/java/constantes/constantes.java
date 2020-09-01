@@ -10,7 +10,7 @@ public class constantes {
     static public String mapFileName = RESOURCE_FOLDER + "/map.jpg";
     static public String robotFileName = RESOURCE_FOLDER + "/robot.png";
     static public int FPS = 30;                               //frames/seg
-    static public double velocidadTraslacional = 40;             //pixeles/seg
+    static public double velocidadTraslacional = 100;             //pixeles/seg
     static public double velocidadRotacional = 0.7;             //rad/seg
     static public double mapAncho = 600*1440/810;
     static public double mapAlto = 600;

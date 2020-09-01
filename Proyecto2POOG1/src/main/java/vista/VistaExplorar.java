@@ -25,7 +25,6 @@ public class VistaExplorar {
     private HBox root;
     private ImageView mapView;
     private Rover robot;
-    private String comandosIngresados;
     
     public VistaExplorar(){
         try(FileInputStream f = new FileInputStream(constantes.constantes.mapFileName)){
@@ -44,8 +43,7 @@ public class VistaExplorar {
         Label ingreseComandosLabel = new Label("Ingrese comandos:");
         TextField comando = new TextField();
         Label comandosListLabel = new Label("Comandos ingresados:");
-        TextArea comandosList = new TextArea();
-        comandosIngresados = "";
+        TextArea comandosList = new TextArea("");
         
         
         
@@ -61,6 +59,8 @@ public class VistaExplorar {
             if(key.getCode()== KeyCode.ENTER){
                 String texto = comando.getText();
                 Boolean esComando = true;
+                Boolean escapa = false;
+                String separador;
                 try{
                     if("sensar".equals(texto)) rover.sensar();
                     
@@ -70,18 +70,24 @@ public class VistaExplorar {
                         
                     }else if(texto.substring(0, 8).equals("avanzar:")){
                         double d = Double.parseDouble(texto.substring(8));
+                        double x = rover.getX() + d*Math.cos(rover.getOrientacion());
+                        double y = rover.getY() + d*Math.sin(rover.getOrientacion());
+                        escapa = 0 > x || x > constantes.constantes.mapAncho || 0 > y || y > constantes.constantes.mapAlto;
                         rover.avanzar(d);
                     }else if("dirigirse:".equals(texto.substring(0, 10))){
                         String coordinates = texto.substring(10);
                         double x = Double.parseDouble(coordinates.split(",")[0]);
                         double y = Double.parseDouble(coordinates.split(",")[1]);
+                        escapa = 0 > x || x > constantes.constantes.mapAncho || 0 > y || y > constantes.constantes.mapAlto;
                         rover.dirigirse(x, y);
                     }
                     else esComando = false;
                     
+                    if (escapa) separador = " (abortado)\n";
+                    else separador = "\n";
+                    
                     if (esComando){
-                        comandosIngresados = texto + "\n" + comandosIngresados;
-                        comandosList.setText(comandosIngresados);
+                        comandosList.setText(texto + separador + comandosList.getText());
                     }else System.out.println("El comando no existe");
                     
                     comando.clear();
