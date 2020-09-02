@@ -111,8 +111,7 @@ public class Rover {
                 else anguloFaltante = difAngular - Math.signum(difAngular)*2*Math.PI;
             }else anguloFaltante = difAngular;
             
-            boolean escapa = 0 > x || x > constantes.constantes.mapAncho || 0 > y || y > constantes.constantes.mapAlto;
-            while (Math.abs(anguloFaltante) > constantes.constantes.dTheta && !escapa){
+            while (Math.abs(anguloFaltante) > constantes.constantes.dTheta){
                 
                 orientacion += Math.signum(anguloFaltante)*constantes.constantes.dTheta;
                 roverView.setRotate(orientacion*180/Math.PI);
@@ -124,20 +123,18 @@ public class Rover {
                     System.out.println("F en el sleep :(");
                 }
             }
-            if (!escapa){
-                orientacion = direccion;
-                roverView.setRotate(orientacion*180/Math.PI);
-                while (orientacion < -Math.PI/2) orientacion += 2*Math.PI;
-                while (orientacion >= 3*Math.PI/2) orientacion -= 2*Math.PI;
-            }
+            orientacion = direccion;
+            roverView.setRotate(orientacion*180/Math.PI);
+            while (orientacion < -Math.PI/2) orientacion += 2*Math.PI;    
+            while (orientacion >= 3*Math.PI/2) orientacion -= 2*Math.PI;  
+            //Los whiles sirven para mantener orientacion dentro del intervalo [-pi/2, 3pi/2) 
         }
         
         public void traslacion(){
             double newX = ubicacion.getX() + constantes.constantes.dx*Math.cos(direccion);
             double newY = ubicacion.getY() + constantes.constantes.dx*Math.sin(direccion);
-            boolean escapa = 0 > x || x > constantes.constantes.mapAncho || 0 > y || y > constantes.constantes.mapAlto;
             
-            while (distanciaFaltante > constantes.constantes.dx && (!escapa)){
+            while (distanciaFaltante > constantes.constantes.dx){
                 ubicacion.setX(newX);
                 ubicacion.setY(newY);
                 roverView.setX(newX);
@@ -153,12 +150,10 @@ public class Rover {
                 newY = ubicacion.getY() + constantes.constantes.dx*Math.sin(direccion);
                 
             }
-            if (!escapa){
-                ubicacion.setX(x);
-                ubicacion.setY(y);
-                roverView.setX(x);
-                roverView.setY(y);
-            }
+            ubicacion.setX(x);
+            ubicacion.setY(y);
+            roverView.setX(x);
+            roverView.setY(y);
         }
     }
 }

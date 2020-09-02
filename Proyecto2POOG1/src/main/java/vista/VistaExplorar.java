@@ -60,7 +60,7 @@ public class VistaExplorar {
                 String texto = comando.getText();
                 Boolean esComando = true;
                 Boolean escapa = false;
-                String separador;
+                String separador ="\n";
                 try{
                     if("sensar".equals(texto)) rover.sensar();
                     
@@ -73,18 +73,17 @@ public class VistaExplorar {
                         double x = rover.getX() + d*Math.cos(rover.getOrientacion());
                         double y = rover.getY() + d*Math.sin(rover.getOrientacion());
                         escapa = 0 > x || x > constantes.constantes.mapAncho || 0 > y || y > constantes.constantes.mapAlto;
-                        rover.avanzar(d);
+                        if(!escapa) rover.avanzar(d);
                     }else if("dirigirse:".equals(texto.substring(0, 10))){
                         String coordinates = texto.substring(10);
                         double x = Double.parseDouble(coordinates.split(",")[0]);
                         double y = Double.parseDouble(coordinates.split(",")[1]);
                         escapa = 0 > x || x > constantes.constantes.mapAncho || 0 > y || y > constantes.constantes.mapAlto;
-                        rover.dirigirse(x, y);
+                        if(!escapa) rover.dirigirse(x, y);
                     }
                     else esComando = false;
                     
                     if (escapa) separador = " (abortado)\n";
-                    else separador = "\n";
                     
                     if (esComando){
                         comandosList.setText(texto + separador + comandosList.getText());
