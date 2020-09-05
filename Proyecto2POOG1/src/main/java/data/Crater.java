@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import javafx.geometry.Point2D;
 
 /**
  *
@@ -116,6 +117,9 @@ public class Crater {
 
     public void setFechaExploracion(LocalDateTime fechaExploracion) {
         this.fechaExploracion = fechaExploracion;
+    }
+    public double getDistanciaCorta(Point2D origen){
+        return Math.abs(Math.sqrt(Math.pow(latitud - origen.getX(), 2)+Math.pow(longitud - origen.getY(), 2))-radio);
     }
     
 }

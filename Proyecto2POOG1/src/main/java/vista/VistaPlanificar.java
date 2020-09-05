@@ -5,30 +5,18 @@
  */
 package vista;
 
-import java.util.Random;
+import approver.App;
+import java.util.ArrayList;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
+
 /**
  *
  * @author ai_to
@@ -43,19 +31,34 @@ public class VistaPlanificar {
         HBox top = new HBox();
         top.getChildren().addAll(nomCrater, ta);
         
+        
         VBox boxRuta = new VBox();
+        TextArea crateresList = new TextArea("");
+
         boxRuta.setAlignment(Pos.BASELINE_CENTER);
         root.getChildren().add(top);
         root.getChildren().add(boxRuta);
-        
-        ta.setOnKeyPressed(
-            (event)->{
+                    
+        ta.setOnKeyReleased(
+            (key)->{
                 //planificarRuta() --> que devuelve la lista de crateres en orden de visita.
-                int listaRuta = 10;
-                for (int i = 0; i < listaRuta; i++) {
-                    boxRuta.getChildren().add(new Label(i + ". " + "Crater"));
+                if(key.getCode()== KeyCode.ENTER && !ta.getText().equals("")){
+                    String texto = ta.getText();
+                    if(texto.contains(",")){
+                        String[] crateres = texto.split(",");
+                        double distancePiv = Double.MAX_VALUE;
+                        for(String crater: crateres){
+                            System.out.println("");
+                        }
+                    
+                    }else{
+                        crateresList.setText(ta.getText());
+                    }
+                    ta.clear();
+                    
+                    //usar comparable con distancias...
+                    
                 }
-                
             }
         );
     }
