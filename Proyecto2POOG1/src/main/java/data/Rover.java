@@ -1,7 +1,10 @@
 package data;
 
+import approver.App;
+import datacarga.ReporteData;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.effect.Light.Point;
@@ -18,15 +21,16 @@ public class Rover {
     public ImageView roverView;
     private Point ubicacion;
     private double orientacion = 0; //En el intervalo [-pi/2, 3pi/2)
-    private double roverAncho = 200;
-    private double roverAlto = 200;
+    private double roverAncho = 10;
+    private double roverAlto = 10;
     
 
     public Rover(){
         try(FileInputStream f = new FileInputStream(constantes.constantes.robotFileName)){
-                roverView = new ImageView(new Image(f));
+                roverView = new ImageView(new Image(f,50,50,false,false));
                 roverView.setFitWidth(roverAncho);
                 roverView.setFitHeight(roverAlto);
+                
         }catch (IOException e){
             System.out.println("¡Algo salió mal al cargar el robot!");
         }
@@ -52,7 +56,9 @@ public class Rover {
         Thread t = new Thread(new movimiento(destino));
         t.start();
     }
-    public String sensar(){return "Hola";}
+    public String sensar(){        
+        return getX()+","+getY(); 
+    }
     
     public double getX(){
         return ubicacion.getX();

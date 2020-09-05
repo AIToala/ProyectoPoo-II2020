@@ -6,29 +6,38 @@
 package datacarga;
 
 import data.Crater;
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import javafx.scene.control.Alert;
 /**
  *
  * @author ai_to
  */
 public class CraterData {
-    public static String FILE_CRATERES = DataHelper.ARCHIVOS+"/crateres.txt";
+    public static String FILE_CRATERES = DataHelper.ARCHIVOS+"/crateres_info.txt";
     
     public static ArrayList<Crater> leerCrateresData() 
-            throws IOException, ClassNotFoundException{
-        try(ObjectInputStream input = new ObjectInputStream(
-                                            new FileInputStream(FILE_CRATERES))){
-            return (ArrayList<Crater>)input.readObject();
+            throws IOException{
+        try(BufferedReader br = new BufferedReader(
+                                            new FileReader(FILE_CRATERES))){
+            String line;
+            ArrayList<Crater> crateres = new ArrayList<>();
+            while((line = br.readLine())!= null){
+                String  id = line.split(",")[0];
+                String nombre = line.split(",")[1];
+                double latitud = Double.parseDouble(line.split(",")[2]);
+                double longitud = Double.parseDouble(line.split(",")[3]);
+                double radio = Double.parseDouble(line.split(",")[4]);
+                Crater c = new Crater(id, nombre, latitud, longitud, radio);
+                crateres.add(c);
+            }
+            return crateres;
         }  catch(FileNotFoundException ex){
+            System.out.println("h");
             return new ArrayList<>();
         }
     }
