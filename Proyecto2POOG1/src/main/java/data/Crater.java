@@ -15,7 +15,7 @@ import javafx.geometry.Point2D;
  *
  * @author ai_to
  */
-public class Crater {
+public class Crater implements Comparable<Crater>{
     private String id;
     private String nombre;
     private double radio;
@@ -118,8 +118,18 @@ public class Crater {
     public void setFechaExploracion(LocalDateTime fechaExploracion) {
         this.fechaExploracion = fechaExploracion;
     }
-    public double getDistanciaCorta(Point2D origen){
-        return Math.abs(Math.sqrt(Math.pow(latitud - origen.getX(), 2)+Math.pow(longitud - origen.getY(), 2))-radio);
+    public double getDistanciaCorta(){
+        return Math.abs(Math.sqrt(Math.pow(latitud, 2)+Math.pow(longitud, 2))-radio);
+    }
+    @Override
+    public int compareTo(Crater c){
+        if(this.getDistanciaCorta() < c.getDistanciaCorta()){
+            return -1;
+        }
+        if(this.getDistanciaCorta() > c.getDistanciaCorta()){
+            return 1;
+        }
+        return 0;
     }
     
 }

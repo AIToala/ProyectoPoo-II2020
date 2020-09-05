@@ -57,7 +57,7 @@ public class VistaExplorar {
         TextField comando = new TextField();
         Label comandosListLabel = new Label("Comandos ingresados:");
         TextArea comandosList = new TextArea("");
-        
+        comandosList.setEditable(false);
         
         
         VBox comandosPanel = new VBox(ingreseComandosLabel, comando, comandosListLabel, comandosList);
