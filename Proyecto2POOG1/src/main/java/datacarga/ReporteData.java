@@ -5,15 +5,11 @@
  */
 package datacarga;
 
-import data.Crater;
 import java.util.ArrayList;
 import data.Reporte;
-import static datacarga.CraterData.FILE_CRATERES;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -21,13 +17,17 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- *
+ * Clase que maneja archivos con informacion importantes para la aplicacion
  * @author ai_to
  */
 public class ReporteData {
     public static String FILE_REPORTES = DataHelper.ARCHIVOS+"/reportes.txt";
 
-    
+    /**
+     * Metodo estatico que obtiene reportes dentro de un archivo y retorna lista de reportes.
+     * @return lista de reportes
+     * @throws IOException 
+     */
     public static ArrayList<Reporte> leerReportes() 
             throws IOException{
         try(BufferedReader br = new BufferedReader(
@@ -58,7 +58,11 @@ public class ReporteData {
             return new ArrayList<>();
         }
     }
-    
+    /**
+     * Metodo que escribe reportes a un archivo, como parametro necesita de un reporte.
+     * @param reporte Objeto tipo Reporte
+     * @throws IOException 
+     */
     public static void escribirReporte(Reporte reporte) 
             throws IOException{
         try(BufferedWriter br = new BufferedWriter(

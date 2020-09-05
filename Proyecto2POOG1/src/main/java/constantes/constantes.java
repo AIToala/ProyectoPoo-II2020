@@ -1,7 +1,7 @@
 package constantes;
 
 /**
- *
+ * Clase que contiene las Constantes del programa.
  * @author ai_to
  */
 public class constantes {

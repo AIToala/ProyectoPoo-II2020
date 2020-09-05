@@ -6,7 +6,7 @@
 package datacarga;
 
 /**
- *
+ * Interfaz que proporciona datos adicionales al programa.
  * @author ai_to
  */
 public interface DataHelper {

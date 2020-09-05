@@ -6,38 +6,25 @@
 package vista;
 
 import approver.App;
-import java.util.Random;
-import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.geometry.Insets;
-import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 /**
- *
+ * Clase de Vista Principal, vista del menu principal de la aplicacion
  * @author ai_to
  */
 public class VistaPrincipal {
     private BorderPane root;
     private boolean salida = false;
+    /**
+     * Constructor de Vista Principal, inicializa informacion y graficos del 
+     * escenario.
+     */
     public VistaPrincipal(){
         root = new BorderPane();
         
@@ -51,7 +38,7 @@ public class VistaPrincipal {
         boxBotones.setAlignment(Pos.CENTER);
         boxBotones.setSpacing(20);
         root.setCenter(boxBotones);
-        
+        //Evento de Boton Explorar
         btnExplorar.setOnAction(
             (event)->{
                 App.stageP.hide();
@@ -67,6 +54,7 @@ public class VistaPrincipal {
                 );
             }
         );
+        //Evento del boton Planificar Ruta
         btnPlanificar.setOnAction(
             (event)->{
                 App.stageP.hide();
@@ -82,6 +70,7 @@ public class VistaPrincipal {
                 );
             }
         );
+        //Evento del boton Reportes
         btnReportes.setOnAction(
             (event)->{
                 App.stageP.hide();
@@ -97,12 +86,17 @@ public class VistaPrincipal {
                 );
             }
         );
+        //Evento del boton salir
         btnSalir.setOnAction(
             (event)->{
                 App.stageP.close();
             }
         );
     }
+    /**
+     * Metodo que retorna el nodo raiz de la vista principal
+     * @return pane
+     */
     public Pane getRoot(){
         return root;
     }

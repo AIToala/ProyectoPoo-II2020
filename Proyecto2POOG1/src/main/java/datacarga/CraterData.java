@@ -7,19 +7,21 @@ package datacarga;
 
 import data.Crater;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 /**
- *
+ * Clase que maneja archivos que son de vital importancia para el programa.
  * @author ai_to
  */
 public class CraterData {
     public static String FILE_CRATERES = DataHelper.ARCHIVOS+"/crateres_info.txt";
-    
+    /**
+     * Metodo que lee un archivo y retorna lista de instancia del objeto Crater
+     * @return lista de crateres
+     * @throws IOException 
+     */
     public static ArrayList<Crater> leerCrateresData() 
             throws IOException{
         try(BufferedReader br = new BufferedReader(

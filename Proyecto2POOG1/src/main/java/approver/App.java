@@ -17,7 +17,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 /**
- *
+ * Clase App extiende de aplicacion aquella que genera la aplicacion e
+ * inicializa informacion que usara el programa.
  * @author ai_to
  */
 public class App extends Application{
@@ -26,7 +27,12 @@ public class App extends Application{
     public static ArrayList<Crater> crateres;
     public static ArrayList<Reporte> reportes;
     public static Stage stageP;
-    
+    /**
+     * Metodo sobreescrito start proveniente de aplicacion, 
+     * inicializa informacion y crea la primera escena y escenario
+     * del programa.
+     * @param primaryStage 
+     */
     @Override
     public void start(Stage primaryStage) {
         try{
@@ -47,7 +53,10 @@ public class App extends Application{
         stageP.setTitle("Exploracion Rover");
         stageP.show();
     }
-    
+    /**
+     * Metodo main de la Clase App.
+     * @param args 
+     */
     public static void main(String[] args){
         launch(args);
     }

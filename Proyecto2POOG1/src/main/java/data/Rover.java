@@ -1,11 +1,7 @@
 package data;
 
-import approver.App;
-import datacarga.ReporteData;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.effect.Light.Point;
 import javafx.scene.image.Image;
@@ -13,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
 /**
- *
+ * Clase Rover, objeto movil que se encarga de sensar crateres.
  * @author ai_to
  */
 public class Rover {
@@ -24,7 +20,10 @@ public class Rover {
     private double roverAncho = 10;
     private double roverAlto = 10;
     
-
+    /**
+     * Constructor de Rover
+     * Carga informacion del rover.
+     */
     public Rover(){
         try(FileInputStream f = new FileInputStream(constantes.constantes.robotFileName)){
                 roverView = new ImageView(new Image(f,50,50,false,false));
@@ -41,37 +40,66 @@ public class Rover {
         this.ubicacion = new Point(roverView.getX(), roverView.getY(), 0, Color.ALICEBLUE);
         
     }
+    /**
+     * Metodo avanzar del rover que avanza cierta distancia con respecto a su orientacion.
+     * @param distancia distancia a moverse de acuerdo a su orientacion.
+     */
     public void avanzar(double distancia){
         
         Point destino = new Point(ubicacion.getX() + distancia*Math.cos(orientacion), ubicacion.getY() + distancia*Math.sin(orientacion),0,Color.ALICEBLUE);
         Thread t = new Thread(new movimiento(destino));
         t.start();
     }
+    /**
+     * Metodo girar del rover que modifica la orientacion del rover. 
+     * @param grados Grados de giro
+     */
     public void girar(double grados){
         Thread t = new Thread(new movimiento(grados));
         t.start();
     }
+    /**
+     * Metodo dirigirse del rover que hace que el rover se posicione en las coordenadas
+     * pasadas por parametro.
+     * @param x Posicion en eje x del rover
+     * @param y Posicion en eje y del rover
+     */
     public void dirigirse(double x, double y){
         Point destino = new Point(x, y, 0, Color.ALICEBLUE);
         Thread t = new Thread(new movimiento(destino));
         t.start();
     }
+    /**
+     * Metodo sensar del rover, retorna coordenadas del rover usadas para sensar crater en la posicion
+     * @return String con sus coordenadas
+     */
     public String sensar(){        
         return getX()+","+getY(); 
     }
-    
+    /**
+     * Metodo que retorna la ubicacion en X con respecto al nodo que se encuentra el rover
+     * @return ubicacion en x (double)
+     */
     public double getX(){
         return ubicacion.getX();
     }
-    
+    /**
+     * Metodo que retorna la ubicacion en Y con respecto al nodo que se encuentra el rover
+     * @return ubicacion en y (double)
+     */
     public double getY(){
         return ubicacion.getY();
     }
-    
+    /**
+     * Metodo que retorna la orientacion en grados del rover.
+     * @return orientacion del rover.
+     */
     public double getOrientacion() {
         return orientacion;
     }
-    
+    /**
+     * Clase anonima de movimiento que permite el movimiento y las interacciones del rover.
+     */
     class movimiento implements Runnable{
         double x;
         double y;
@@ -80,7 +108,11 @@ public class Rover {
         double direccion;
         boolean sentidoMasCorto = true;
         private TextArea comandosList;
-
+        /**
+         * Constructor de movimiento.
+         * Usado para metodo avanzar del rover
+         * @param destino Punto de destino
+         */
         public movimiento(Point destino) {
             this.x = destino.getX();
             this.y = destino.getY();
@@ -94,7 +126,11 @@ public class Rover {
             
             
         }
-        
+        /**
+         * Constructor de movimiento
+         * Usado para metodo girar del rover
+         * @param cantidadGrados orientacion del rover
+         */
         public movimiento (double cantidadGrados){
             direccion = orientacion - cantidadGrados*Math.PI/180;
             x = ubicacion.getX();
@@ -103,12 +139,17 @@ public class Rover {
             sentidoMasCorto = false;
             
         }
-        
+        /**
+         * Metodo sobreescrito de Runnable.
+         */
+        @Override
         public void run(){
             rotacion();
             traslacion();
         }
-        
+        /**
+         * Metodo void que permite rotar al rover cierta cantidad de grados.
+         */
         public void rotacion(){
             
             double difAngular = direccion - orientacion;
@@ -135,7 +176,9 @@ public class Rover {
             while (orientacion >= 3*Math.PI/2) orientacion -= 2*Math.PI;  
             //Los whiles sirven para mantener orientacion dentro del intervalo [-pi/2, 3pi/2) 
         }
-        
+        /**
+         * Metodo que permite trasladar al rover a cierta posicion.
+         */
         public void traslacion(){
             double newX = ubicacion.getX() + constantes.constantes.dx*Math.cos(direccion);
             double newY = ubicacion.getY() + constantes.constantes.dx*Math.sin(direccion);

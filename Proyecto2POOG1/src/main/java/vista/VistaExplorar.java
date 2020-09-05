@@ -6,14 +6,9 @@ import data.Reporte;
 import data.Rover;
 import datacarga.ReporteData;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -30,8 +25,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 /**
- *
- * @author user
+ * Clase VistaExplorar nos genera la vista grafica del menu Explorar de la aplicacion.
+ * @author Grupo2POO
  */
 public class VistaExplorar {
     private VBox root = new VBox();
@@ -39,6 +34,9 @@ public class VistaExplorar {
     private Rover robot;
     private Pane espacioExplorar;
     private Label craterInfo;
+    /**
+     * Constructor para generar la vista grafica del menu Explorar.
+     */
     public VistaExplorar(){
         try(FileInputStream f = new FileInputStream(constantes.constantes.mapFileName)){
             mapView = new ImageView(new Image(f));
@@ -69,7 +67,7 @@ public class VistaExplorar {
         
         root.getChildren().add(mapaComandos);
         
-        //Movimiento del robot
+        //Acciones del robot mediante comandos
         comando.setOnKeyReleased((key) -> {
             if(key.getCode()== KeyCode.ENTER){
                 String texto = comando.getText();
@@ -148,6 +146,9 @@ public class VistaExplorar {
         craterInfo.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         root.getChildren().add(craterInfo);
     }
+    /**
+     * Metodo void que crea los crateres y les da funcionalidad.
+     */
     public void ubicarCrateres(){
         for(Crater c : App.crateres){
             Circle circulito = new Circle();
@@ -167,6 +168,10 @@ public class VistaExplorar {
             );
         }
     }
+    /**
+     * Metodo que retorna el nodo raiz de la escena VistaExplorar.
+     * @return 
+     */
     public VBox getRoot(){
         return root;
     }

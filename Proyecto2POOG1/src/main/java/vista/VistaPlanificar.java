@@ -8,10 +8,8 @@ package vista;
 import approver.App;
 import data.Crater;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import javafx.geometry.Insets;
-import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -22,12 +20,17 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 /**
- *
+ * Clase vistaPlanificar, contiene la vista que obtiene la ruta optimizada pasado
+ * como parametro los crateres a recorrer.
  * @author ai_to
  */
 public class VistaPlanificar {
     private VBox root;
     TextArea crateresList;
+    /**
+     * Constructor de VistaPlanificar
+     * inicializa la vista grafica de esta Escena.
+     */
     public VistaPlanificar(){
         root = new VBox();
         root.setPadding(new Insets(20,20,20,20));
@@ -47,6 +50,7 @@ public class VistaPlanificar {
         root.getChildren().add(top);
         root.getChildren().add(boxRuta);
         boxRuta.getChildren().add(crateresList);
+        // Evento sobre el TextArea que contiene los crateres a recorrer.
         ta.setOnKeyReleased(
             (key)->{
                 //planificarRuta() --> que devuelve la lista de crateres en orden de visita.
@@ -81,6 +85,10 @@ public class VistaPlanificar {
             }
         );
     }
+    /**
+     * Metodo que modifica la escena y genera la ruta optimizada con los crateres que se agregan.
+     * @param cratList lista de crateres por recorrer
+     */
     public void planificarRuta(ArrayList<String> cratList){
         ArrayList<Crater> destinosCrt = new ArrayList<>();
         if(!App.crateres.isEmpty()){
@@ -105,6 +113,10 @@ public class VistaPlanificar {
         
         }   
     }
+    /**
+     * Metodo que retorna el nodo principal de esta escena.
+     * @return Pane
+     */
     public Pane getRoot(){
         return root;
     }
