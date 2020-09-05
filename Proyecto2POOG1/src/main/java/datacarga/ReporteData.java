@@ -14,7 +14,9 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
+import javafx.util.converter.LocalDateTimeStringConverter;
 
 /**
  * Clase que maneja archivos con informacion importantes para la aplicacion
@@ -35,11 +37,14 @@ public class ReporteData {
             String line;
             ArrayList<Reporte> reportes = new ArrayList<>();
             while((line = br.readLine())!= null){
-                String  dateStr = line.split("-")[0];
-                DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-                
-                LocalDateTime date = LocalDateTime.parse(dateStr, format);
-                String minerales = line.split("-")[1];
+                if(line.equals("")){continue;}
+                String[]  dateStr = line.split(";")[0].split(" ");
+                String[] date = dateStr[0].split("-");
+                String[] time = dateStr[1].split(":");
+                //5-9-2020 18:15
+                LocalDateTime d = LocalDateTime.of(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]),
+                                                        Integer.parseInt(time[0]), Integer.parseInt(time[1]));
+                String minerales = line.split(";")[1];
                 ArrayList<String> mineralesT = new ArrayList<>();
                 if(minerales.contains(",")){
                     String[] contenido = minerales.split(",");
@@ -49,8 +54,8 @@ public class ReporteData {
                 }else{
                     mineralesT.add(minerales);
                 }
-                String nombre = line.split("-")[2];
-                Reporte r = new Reporte(date, mineralesT, nombre);
+                String nombre = line.split(";")[2];
+                Reporte r = new Reporte(d, mineralesT, nombre);
                 reportes.add(r);
             }
             return reportes;
@@ -67,7 +72,14 @@ public class ReporteData {
             throws IOException{
         try(BufferedWriter br = new BufferedWriter(
                             new FileWriter(FILE_REPORTES, true))){
-            br.write(reporte.getFechaExploracion()+"-"+reporte.getMineralesStr()+"-"+reporte.getNombreCrater());
+            String dia = Integer.toString(reporte.getFechaExploracion().getDayOfMonth());
+            String mes = Integer.toString(reporte.getFechaExploracion().getMonthValue());
+            String year = Integer.toString(reporte.getFechaExploracion().getYear());
+            String hour = Integer.toString(reporte.getFechaExploracion().getHour());
+            String minute = Integer.toString(reporte.getFechaExploracion().getMinute());
+            
+            String fecha = dia+"-"+mes+"-"+year+" "+hour+":"+minute;
+            br.write(fecha+";"+reporte.getMineralesStr()+";"+reporte.getNombreCrater());
             br.newLine();
         }catch(IOException ex){
             ex.printStackTrace();
