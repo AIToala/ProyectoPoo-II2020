@@ -6,27 +6,24 @@
 package vista;
 
 import approver.App;
+import data.Reporte;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 /**
  *
@@ -42,6 +39,7 @@ public class VistaReporte {
     public VistaReporte() {
         root = new VBox();
         seccionBusqueda();
+        seccionTabla();
     }
 
     public void seccionBusqueda() {
@@ -74,7 +72,7 @@ public class VistaReporte {
             if (e.getCode() == KeyCode.ENTER) {
                 try {
                     String str = String.valueOf(tx1.getText());
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
                     fechaInicio = LocalDate.parse(str, formatter);
                     System.out.println("MMMMHOLA");
                 } catch (Exception ex) {
@@ -87,7 +85,7 @@ public class VistaReporte {
             if (e.getCode() == KeyCode.ENTER) {
                 try {
                     String str = String.valueOf(tx2.getText());
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
                     fechaFin = LocalDate.parse(str, formatter);
                     System.out.println("MMMMHOLA2");
                 } catch (Exception ex) {
@@ -112,12 +110,38 @@ public class VistaReporte {
     
 
     public void seccionTabla() {
-        VBox v1 = new VBox();
-        v1.setAlignment(Pos.CENTER);
-        v1.setSpacing(15);
-    }
+        
+        if(!App.reportes.isEmpty()){
+            VBox v1 = new VBox();
+            v1.setAlignment(Pos.CENTER);
+            v1.setSpacing(15);
+            TableView<Reporte> tableReporte = new TableView<>();
+            //filtrado
+            ObservableList<Reporte> reportes = FXCollections.observableArrayList(App.reportes);
+            tableReporte.setItems(reportes);
+            tableReporte.setMaxSize(500, 600);
+            tableReporte.setMinSize(250, 300);
 
-    public Pane getRoot() {
+            TableColumn<Reporte, LocalDateTime> colFecha = new TableColumn<>("Fecha de exploracion");
+            colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaExploracion"));
+            colFecha.setMinWidth(tableReporte.getMaxWidth()/4);
+
+             TableColumn<Reporte, LocalDateTime> colMinerales = new TableColumn<>("Minerales");
+            colMinerales.setCellValueFactory(new PropertyValueFactory<>("minerales"));
+            colMinerales.setMinWidth(tableReporte.getMaxWidth()/4);
+
+             TableColumn<Reporte, LocalDateTime> colNomCrater = new TableColumn<>("Nombre del cràter");
+            colNomCrater.setCellValueFactory(new PropertyValueFactory<>("nombreCrater"));
+            colNomCrater.setMinWidth(tableReporte.getMaxWidth()/4);
+
+            tableReporte.getColumns().addAll(colFecha, colMinerales, colNomCrater);
+            v1.getChildren().add(tableReporte);
+            root.getChildren().add(v1);
+        }
+    }
+    
+
+    public Pane getRoot(){
         return root;
     }
 }
