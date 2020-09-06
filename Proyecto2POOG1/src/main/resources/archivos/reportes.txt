@@ -1,0 +1,10 @@
+6-9-2020 0:11;Big Joe,Coronation,Block Island,Barnacle Bill,Block Island,Coronation,Heat Shield;Sayers
+6-9-2020 0:47;Esperance,El Capitan,Block Island,Block Island,Bathurst Inlet,Goulburn;O'Keeffe
+6-9-2020 0:47;El Capitan,Adirondack,El Capitan,Big Joe,Coronation,Coronation;Nevelson
+6-9-2020 14:54;Barnacle Bill,Adirondack,Block Island,Barnacle Bill,Block Island,Heat Shield,Coronation,Adirondack,Adirondack;Rosa Bonheur
+6-9-2020 14:55;Coronation,Block Island,Big Joe,Barnacle Bill,Adirondack,Goulburn,Heat Shield,Block Island;de Beauvoir
+6-9-2020 14:55;Adirondack,Heat Shield,Barnacle Bill,Big Joe,Bathurst Inlet,Heat Shield;Dickinson
+6-9-2020 14:55;Heat Shield;Dix
+6-9-2020 14:55;Esperance,Bathurst Inlet;Sanger
+6-9-2020 15:22;Big Joe,El Capitan;Seymour
+6-9-2020 15:38;Block Island,Coronation,Bathurst Inlet,Bathurst Inlet,Block Island;Baker
