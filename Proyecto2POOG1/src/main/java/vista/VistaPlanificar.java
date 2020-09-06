@@ -24,7 +24,7 @@ import javafx.scene.layout.VBox;
  * como parametro los crateres a recorrer.
  * @author ai_to
  */
-public class VistaPlanificar {
+public class VistaPlanificar extends Vista{
     private VBox root;
     TextArea crateresList;
     /**

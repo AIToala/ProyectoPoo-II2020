@@ -28,7 +28,7 @@ import javafx.scene.shape.Circle;
  * Clase VistaExplorar nos genera la vista grafica del menu Explorar de la aplicacion.
  * @author Grupo2POO
  */
-public class VistaExplorar {
+public class VistaExplorar extends Vista{
     private VBox root = new VBox();
     private ImageView mapView;
     private Rover robot;
@@ -92,6 +92,8 @@ public class VistaExplorar {
                                                 crat.setSensado(true);
                                                 crat.setFechaExploracion(LocalDateTime.now());
                                                 App.reportes.add(r);
+                                                c.setFill(Color.GREENYELLOW);
+                                                c.setOpacity(50);
                                             }catch(IOException ex){
                                                 System.out.println("ERROR EN ESCRITURA REPORTE...");
                                             }

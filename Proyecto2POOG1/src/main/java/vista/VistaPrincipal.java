@@ -18,7 +18,7 @@ import javafx.stage.WindowEvent;
  * Clase de Vista Principal, vista del menu principal de la aplicacion
  * @author ai_to
  */
-public class VistaPrincipal {
+public class VistaPrincipal extends Vista{
     private BorderPane root;
     private boolean salida = false;
     /**

@@ -14,9 +14,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
-import javafx.util.converter.LocalDateTimeStringConverter;
 
 /**
  * Clase que maneja archivos con informacion importantes para la aplicacion

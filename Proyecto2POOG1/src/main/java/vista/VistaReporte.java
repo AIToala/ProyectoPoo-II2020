@@ -29,7 +29,7 @@ import javafx.scene.layout.VBox;
  *
  * @author Usuario
  */
-public class VistaReporte {
+public class VistaReporte extends Vista{
 
     private VBox root;
     private LocalDate fechaInicio;

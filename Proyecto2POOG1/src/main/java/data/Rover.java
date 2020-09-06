@@ -12,7 +12,7 @@ import javafx.scene.paint.Color;
  * Clase Rover, objeto movil que se encarga de sensar crateres.
  * @author ai_to
  */
-public class Rover {
+public class Rover implements RoverComandos{
     
     public ImageView roverView;
     private Point ubicacion;
@@ -26,9 +26,13 @@ public class Rover {
      */
     public Rover(){
         try(FileInputStream f = new FileInputStream(constantes.constantes.robotFileName)){
-                roverView = new ImageView(new Image(f,50,50,false,false));
-                roverView.setFitWidth(roverAncho);
-                roverView.setFitHeight(roverAlto);
+            Image robot = new Image(f, 50, 50, false, false);
+            roverView = new ImageView(robot);
+            roverView.setFitWidth(roverAncho);
+            roverView.setFitHeight(roverAlto);
+            //roverView.fitWidthProperty().bind(robot.widthProperty()); 
+            //roverView.fitHeightProperty().bind(robot.heightProperty()); 
+
                 
         }catch (IOException e){
             System.out.println("¡Algo salió mal al cargar el robot!");
@@ -44,6 +48,7 @@ public class Rover {
      * Metodo avanzar del rover que avanza cierta distancia con respecto a su orientacion.
      * @param distancia distancia a moverse de acuerdo a su orientacion.
      */
+    @Override
     public void avanzar(double distancia){
         
         Point destino = new Point(ubicacion.getX() + distancia*Math.cos(orientacion), ubicacion.getY() + distancia*Math.sin(orientacion),0,Color.ALICEBLUE);
@@ -54,6 +59,7 @@ public class Rover {
      * Metodo girar del rover que modifica la orientacion del rover. 
      * @param grados Grados de giro
      */
+    @Override
     public void girar(double grados){
         Thread t = new Thread(new movimiento(grados));
         t.start();
@@ -64,6 +70,7 @@ public class Rover {
      * @param x Posicion en eje x del rover
      * @param y Posicion en eje y del rover
      */
+    @Override
     public void dirigirse(double x, double y){
         Point destino = new Point(x, y, 0, Color.ALICEBLUE);
         Thread t = new Thread(new movimiento(destino));
@@ -73,8 +80,9 @@ public class Rover {
      * Metodo sensar del rover, retorna coordenadas del rover usadas para sensar crater en la posicion
      * @return String con sus coordenadas
      */
-    public String sensar(){        
-        return getX()+","+getY(); 
+    @Override
+    public void sensar(){        
+        System.out.println(getX()+","+getY()); 
     }
     /**
      * Metodo que retorna la ubicacion en X con respecto al nodo que se encuentra el rover

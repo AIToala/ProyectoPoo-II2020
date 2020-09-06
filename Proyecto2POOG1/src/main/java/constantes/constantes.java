@@ -8,7 +8,7 @@ public class constantes {
     
     public static String RESOURCE_FOLDER = "recursos/imagenes";
     static public String mapFileName = RESOURCE_FOLDER + "/map.jpg";
-    static public String robotFileName = RESOURCE_FOLDER + "/download.png";
+    static public String robotFileName = RESOURCE_FOLDER + "/robot.png";
     static public int FPS = 30;                               //frames/seg
     static public double velocidadTraslacional = 100;             //pixeles/seg
     static public double velocidadRotacional = 0.7;             //rad/seg
