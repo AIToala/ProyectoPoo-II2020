@@ -1,8 +1,3 @@
-5-9-2020 18:49;Adirondack,Big Joe,Adirondack,Adirondack,Heat Shield,Big Joe,Coronation;Baker
-5-9-2020 20:39;Bathurst Inlet,Goulburn,Heat Shield,Coronation,Barnacle Bill,Adirondack,Barnacle Bill;Baker
-5-9-2020 20:42;Adirondack,Adirondack,Block Island,Goulburn,Big Joe,El Capitan,Goulburn,Block Island,Coronation,Heat Shield,Adirondack;Baker
-5-9-2020 20:49;Coronation,Coronation,Bathurst Inlet,Heat Shield,Goulburn,Goulburn;Baker
-5-9-2020 20:49;Coronation,Coronation,Bathurst Inlet,Heat Shield,Goulburn,Goulburn;Baker
-5-9-2020 20:50;Coronation,Coronation,Bathurst Inlet,Heat Shield,Goulburn,Goulburn;Baker
-5-9-2020 20:50;Coronation,Coronation,Bathurst Inlet,Heat Shield,Goulburn,Goulburn;Baker
-5-9-2020 20:50;Coronation,Coronation,Bathurst Inlet,Heat Shield,Goulburn,Goulburn;Baker
+6-9-2020 0:11;Big Joe,Coronation,Block Island,Barnacle Bill,Block Island,Coronation,Heat Shield;Sayers
+6-9-2020 0:47;Esperance,El Capitan,Block Island,Block Island,Bathurst Inlet,Goulburn;O'Keeffe
+6-9-2020 0:47;El Capitan,Adirondack,El Capitan,Big Joe,Coronation,Coronation;Nevelson

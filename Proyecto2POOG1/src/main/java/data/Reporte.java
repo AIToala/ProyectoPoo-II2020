@@ -7,13 +7,14 @@ package data;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  * Clase Reporte que contiene informacion con referente al crater sensado.
  * @author ai_to
  */
-public class Reporte {
+public class Reporte /*implements Comparable<Reporte>*/{
     private LocalDateTime fechaExploracion;
     private List<String> minerales;
     private String nombreCrater;
@@ -83,5 +84,21 @@ public class Reporte {
         this.nombreCrater = nombreCrater;
     }
     
+    /*public int compareTo(Reporte r){
+        return this.getFechaExploracion().compareTo(r.getFechaExploracion());
+    }
     
+    public class NombreComparator implements Comparator<Reporte> {
+ 
+        @Override
+        public int compare(Reporte r1, Reporte r2) {
+           return r1.getNombreCrater().compareTo(r2.getNombreCrater());
+        }
+ 
+    }*/
+
+    @Override
+    public String toString() {
+        return "Reporte{" + "fechaExploracion=" + fechaExploracion + '}';
+    }
 }
