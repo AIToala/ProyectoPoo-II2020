@@ -32,8 +32,8 @@ import javafx.scene.layout.VBox;
 public class VistaReporte extends Vista {
 
     private VBox root;
-    private LocalDate fechaInicio;
-    private LocalDate fechaFin;
+    private LocalDateTime fechaInicio;
+    private LocalDateTime fechaFin;
     private String mineral;
     private TextField tx1;
     private TextField tx2;
@@ -94,24 +94,56 @@ public class VistaReporte extends Vista {
 
         tx3.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
-                filtrar();
+                try{
+                    filtrar();
+                } catch (Exception ex){
+                    System.out.println(ex.getMessage());
+                }
             }
         });
     }
 
     public void filtrar() {
         String str1 = String.valueOf(tx1.getText());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        LocalDateTime fechaInicio = LocalDateTime.parse(str1, formatter);
         String str2 = String.valueOf(tx2.getText());
-        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        LocalDateTime fechaFin = LocalDateTime.parse(str2, formatter);
         String mineral = String.valueOf(tx3.getText());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");  
+        try{
+            fechaInicio = LocalDateTime.parse(str1, formatter);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        try{
+            fechaFin = LocalDateTime.parse(str2, formatter);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
         
         ArrayList<Reporte> reportesNuevos = new ArrayList<>();
         for(Reporte rp: App.reportes){
             LocalDateTime f = rp.getFechaExploracion();
             if (f.compareTo(fechaInicio)>=0 && f.compareTo(fechaFin)<=0 && rp.getMinerales().contains(mineral)){
+                reportesNuevos.add(rp);
+            }
+            else if (f.compareTo(fechaInicio)>=0 && f.compareTo(fechaFin)<=0 && mineral.equals("")){
+                reportesNuevos.add(rp);
+            }
+            else if(f.compareTo(fechaInicio)>=0 && str2.equals("") && rp.getMinerales().contains(mineral)){
+                reportesNuevos.add(rp);
+            }
+            else if(f.compareTo(fechaInicio)>=0 && str2.equals("") && mineral.equals("")){
+                reportesNuevos.add(rp);
+            }
+            else if(str1.equals("") && f.compareTo(fechaFin)<=0 && rp.getMinerales().contains(mineral)){
+                reportesNuevos.add(rp);
+            }
+            else if(str1.equals("") && f.compareTo(fechaFin)<=0 && mineral.equals("")){
+                reportesNuevos.add(rp);
+            }
+            else if(str1.equals("") && str2.equals("") && rp.getMinerales().contains(mineral)){
+                reportesNuevos.add(rp);
+            }
+            else if(str1.equals("") && str2.equals("") && mineral.equals("")){
                 reportesNuevos.add(rp);
             }
         }
