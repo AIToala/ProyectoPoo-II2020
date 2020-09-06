@@ -6,8 +6,6 @@
 package data;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -35,7 +33,7 @@ public class Reporte /*implements Comparable<Reporte>*/{
      */
     public LocalDateTime getFechaExploracion() {
         return fechaExploracion;
-    }
+    }    
     /**
      * Metodo que modifica la fecha de exploracion registrada por el rover
      * @param fechaExploracion fecha de exploracion

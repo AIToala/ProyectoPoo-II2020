@@ -49,21 +49,21 @@ public class VistaReporte extends Vista {
     public void seccionBusqueda() {
         HBox hb1 = new HBox();
         Label l1 = new Label("Fecha Inicio");
-        tx1 = new TextField();
+        tx1 = new TextField("");
 
         hb1.setSpacing(20);
         hb1.getChildren().addAll(l1, tx1);
 
         HBox hb2 = new HBox();
         Label l2 = new Label("Fecha Fin    ");
-        tx2 = new TextField();
+        tx2 = new TextField("");
 
         hb2.setSpacing(20);
         hb2.getChildren().addAll(l2, tx2);
 
         HBox hb3 = new HBox();
         Label l3 = new Label("Mineral       ");
-        tx3 = new TextField();
+        tx3 = new TextField("");
 
         hb3.setSpacing(20);
         hb3.getChildren().addAll(l3, tx3);
@@ -74,6 +74,7 @@ public class VistaReporte extends Vista {
 
         tx1.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
+                tx1.setText(tx1.getText().replace("\n", ""));
                 try {
                     filtrar();
                 } catch (Exception ex) {
@@ -84,6 +85,7 @@ public class VistaReporte extends Vista {
 
         tx2.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
+                tx2.setText(tx2.getText().replace("\n", ""));
                 try {
                     filtrar();
                 } catch (Exception ex) {
@@ -94,6 +96,7 @@ public class VistaReporte extends Vista {
 
         tx3.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
+                tx3.setText(tx3.getText().replace("\n", ""));
                 try{
                     filtrar();
                 } catch (Exception ex){
@@ -113,41 +116,54 @@ public class VistaReporte extends Vista {
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
+        
         try{
             fechaFin = LocalDateTime.parse(str2, formatter);
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
-        
+ 
         ArrayList<Reporte> reportesNuevos = new ArrayList<>();
+        if(fechaInicio==null){
+            fechaInicio = LocalDateTime.MIN;
+        }
+        if(fechaFin == null){
+            fechaFin = LocalDateTime.MAX;
+        }
         for(Reporte rp: App.reportes){
             LocalDateTime f = rp.getFechaExploracion();
             if (f.compareTo(fechaInicio)>=0 && f.compareTo(fechaFin)<=0 && rp.getMinerales().contains(mineral)){
                 reportesNuevos.add(rp);
+ 
             }
-            else if (f.compareTo(fechaInicio)>=0 && f.compareTo(fechaFin)<=0 && mineral.equals("")){
+            if (f.compareTo(fechaInicio)>=0 && f.compareTo(fechaFin)<=0 && (mineral.equals(""))){
+                reportesNuevos.add(rp);
+   
+            }
+            if(f.compareTo(fechaInicio)>=0 && str2.equals("") && rp.getMinerales().contains(mineral)){
+                reportesNuevos.add(rp);
+
+            }
+            if(f.compareTo(fechaInicio)>=0 && str2.equals("") && mineral.equals("")){
+                reportesNuevos.add(rp);
+
+            }
+            if(str1.equals("") && f.compareTo(fechaFin)<=0 && rp.getMinerales().contains(mineral)){
+                reportesNuevos.add(rp);
+  
+            }
+            if(str1.equals("") && f.compareTo(fechaFin)<=0 && mineral.equals("")){
+                reportesNuevos.add(rp);
+ 
+            }
+            if(str1.equals("") && str2.equals("") && rp.getMinerales().contains(mineral)){
                 reportesNuevos.add(rp);
             }
-            else if(f.compareTo(fechaInicio)>=0 && str2.equals("") && rp.getMinerales().contains(mineral)){
-                reportesNuevos.add(rp);
-            }
-            else if(f.compareTo(fechaInicio)>=0 && str2.equals("") && mineral.equals("")){
-                reportesNuevos.add(rp);
-            }
-            else if(str1.equals("") && f.compareTo(fechaFin)<=0 && rp.getMinerales().contains(mineral)){
-                reportesNuevos.add(rp);
-            }
-            else if(str1.equals("") && f.compareTo(fechaFin)<=0 && mineral.equals("")){
-                reportesNuevos.add(rp);
-            }
-            else if(str1.equals("") && str2.equals("") && rp.getMinerales().contains(mineral)){
-                reportesNuevos.add(rp);
-            }
-            else if(str1.equals("") && str2.equals("") && mineral.equals("")){
+            if(str1.equals("") && str2.equals("") && mineral.equals("")){
                 reportesNuevos.add(rp);
             }
         }
-        
+
         ObservableList<Reporte> reportesNuevosObs = FXCollections.observableArrayList(reportesNuevos);
         tableReporte.setItems(reportesNuevosObs);
     }
@@ -162,9 +178,8 @@ public class VistaReporte extends Vista {
             //filtrado
             ObservableList<Reporte> reportes = FXCollections.observableArrayList(App.reportes);
             tableReporte.setItems(reportes);
-            tableReporte.setMaxSize(500, 600);
-            tableReporte.setMinSize(250, 300);
-
+            tableReporte.setMaxSize(1100, 400);
+            tableReporte.setMinSize(1100, 400);
             TableColumn<Reporte, LocalDateTime> colFecha = new TableColumn<>("Fecha de exploracion");
             colFecha.setCellValueFactory(new PropertyValueFactory<>("fechaExploracion"));
             colFecha.setMinWidth(tableReporte.getMaxWidth() / 4);
@@ -180,6 +195,7 @@ public class VistaReporte extends Vista {
             tableReporte.getColumns().addAll(colFecha, colMinerales, colNomCrater);
             v1.getChildren().add(tableReporte);
             root.getChildren().add(v1);
+            tableReporte.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         }
     }
 
