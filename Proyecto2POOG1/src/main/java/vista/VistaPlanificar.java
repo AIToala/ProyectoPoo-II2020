@@ -71,16 +71,12 @@ public class VistaPlanificar extends Vista{
                         if(!App.crateres.isEmpty()){
                             for(Crater crat: App.crateres){
                                 if(crat.getNombre().toUpperCase().equals(texto)){
-                                    crateresList.setText("1. /t" + texto.toUpperCase());
+                                    crateresList.setText("1. " + texto.toUpperCase());
                                 }
                             }
                         }
-                        crateresList.setText(ta.getText());
                     }
-                    ta.clear();
-                    
-                    //usar comparable con distancias...
-                    
+                    ta.clear();                    
                 }
             }
         );

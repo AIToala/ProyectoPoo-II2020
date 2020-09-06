@@ -161,6 +161,9 @@ public class VistaExplorar extends Vista{
             circulito.setStroke(Color.RED);
             circulito.setOpacity(50);
             circulito.toFront();
+            if(c.isSensado()){
+                circulito.setFill(Color.CYAN);
+            }
             espacioExplorar.getChildren().add(circulito);
             
             circulito.setOnMouseClicked(

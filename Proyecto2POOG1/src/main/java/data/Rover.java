@@ -26,12 +26,12 @@ public class Rover implements RoverComandos{
      */
     public Rover(){
         try(FileInputStream f = new FileInputStream(constantes.constantes.robotFileName)){
-            Image robot = new Image(f, 50, 50, false, false);
+            Image robot = new Image(f, 30, 30, true, false);
             roverView = new ImageView(robot);
             roverView.setFitWidth(roverAncho);
             roverView.setFitHeight(roverAlto);
-            //roverView.fitWidthProperty().bind(robot.widthProperty()); 
-            //roverView.fitHeightProperty().bind(robot.heightProperty()); 
+            roverView.fitWidthProperty().bind(robot.widthProperty()); 
+            roverView.fitHeightProperty().bind(robot.heightProperty()); 
 
                 
         }catch (IOException e){
