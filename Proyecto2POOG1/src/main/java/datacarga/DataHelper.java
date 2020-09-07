@@ -10,6 +10,6 @@ package datacarga;
  * @author ai_to
  */
 public interface DataHelper {
-    String RECURSOS= "/resources";
+    String RECURSOS= "resources";
     String ARCHIVOS= RECURSOS+"/archivos";
 }

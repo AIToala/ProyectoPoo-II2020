@@ -6,7 +6,7 @@ package constantes;
  */
 public class constantes {
     
-    public static String RESOURCE_FOLDER = "/resources/imagenes";
+    public static String RESOURCE_FOLDER = "resources/imagenes";
     static public String mapFileName = RESOURCE_FOLDER + "/map.jpg";
     static public String robotFileName = RESOURCE_FOLDER + "/robot.png";
     static public int FPS = 30;                               //frames/seg

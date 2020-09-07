@@ -73,7 +73,7 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
-                    <outputDirectory> ${project.build.outputDirectory}\resources</outputDirectory>
+                    <outputDirectory> ${project.build.outputDirectory}/resources</outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
