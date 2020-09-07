@@ -1,5 +1,6 @@
 package data;
 
+import approver.App;
 import java.io.FileInputStream;
 import java.io.IOException;
 import javafx.scene.control.TextArea;
@@ -36,6 +37,7 @@ public class Rover implements RoverComandos{
                 
         }catch (IOException e){
             System.out.println("¡Algo salió mal al cargar el robot!");
+            App.stageP.show();
         }
         roverView.setTranslateX(-roverAncho/2);
         roverView.setTranslateY(-roverAlto/2);

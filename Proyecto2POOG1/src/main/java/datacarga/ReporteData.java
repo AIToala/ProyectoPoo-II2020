@@ -79,7 +79,7 @@ public class ReporteData {
             br.write(fecha+";"+reporte.getMineralesStr()+";"+reporte.getNombreCrater());
             br.newLine();
         }catch(IOException ex){
-            ex.printStackTrace();
+            System.out.println("Error en carga");
         }
     }
 }

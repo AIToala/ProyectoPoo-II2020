@@ -44,6 +44,7 @@ public class VistaExplorar extends Vista{
             mapView.setFitHeight(constantes.constantes.mapAlto);
         }catch (IOException e){
             System.out.println("¡Algo salió mal al cargar el mapa!");
+            App.stageP.show();
         }
         
         robot = new Rover();

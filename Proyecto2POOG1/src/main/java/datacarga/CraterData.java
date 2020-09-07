@@ -39,7 +39,7 @@ public class CraterData {
             }
             return crateres;
         }  catch(FileNotFoundException ex){
-            System.out.println("h");
+            System.out.println("Error en carga de archivos");
             return new ArrayList<>();
         }
     }
